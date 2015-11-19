@@ -8,13 +8,24 @@
   background-color: #641083;
   color: white;
 }
+
+#japt {
+  display:none;
+}
 </style>
+<script>
+alert("Hello!");
+function openjapt(){alert("Let's do this.");document.getElementById("japt").style.display="block";}
+</script>
 </head>
 <body>
 <h1>ETHproductions</h1>
 <p>Here lies some meaningless text.</p>
 <table>
-<tr><td><a href="#japt">Japt</a></td></tr>
+<tr><td><a onclick="openjapt()">Japt</a></td></tr>
 </table>
+<div id="japt">
+<p>This is an interpreter.</p>
+</div>
 </body>
 </html>
