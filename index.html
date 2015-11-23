@@ -9,7 +9,7 @@
   color: white;
 }
 
-#japt {
+#japt, #fonts {
   display:none;
 }
 
@@ -20,22 +20,62 @@ table {
 
 a {
   font-size:16pt;
-  border:2px solid white;
+  padding-top:3px;
+  padding-bottom:5px;
+  padding-left:8px;
+  padding-right:8px;
+  border:2px solid #A070B0;
   border-radius:8px;
+  margin-right:20px;
 }
 </style>
 <script>
-function openjapt(){document.getElementById("japt").style.display="block";}
+var currenttab = "none";
+var currentdiv = null;
+var opacity = 100;
+function opentab (tabname) {
+  if(currenttab === tabname) return;
+  var interval;
+  if (currentdiv) {
+    for(opacity=20,a=[];opacity--;) {
+		a.push(opacity);
+		setTimeout(function(){currentdiv.style.opacity = a.shift()/20;},20*opacity);
+	}
+	setTimeout(whenDone,400);
+  } else { whenDone(); }
+  function whenDone (x) {
+    if(currentdiv) {
+      clearInterval(interval);
+      currentdiv.style.display="none";
+	}
+	currenttab = tabname;
+	currentdiv = document.getElementById(currenttab);
+	currentdiv.style.display="block";
+	currentdiv.style.opacity=0;
+	for(opacity=0,a=[];opacity++<20;) {
+		a.push(opacity);
+		setTimeout(function(){currentdiv.style.opacity = a.shift()/20;},20*opacity);
+	}
+  }
+}
 </script>
 </head>
 <body>
 <h1>ETHproductions</h1>
 <p>Here lies some meaningless text.</p>
 <table>
-<tr><td><a onclick="openjapt()">Japt</a></td></tr>
+<tr><td><a onclick="opentab('japt')">Japt</a></td><td><a onclick="opentab('fonts')">Fonts</a></td></tr>
 </table>
+
 <div id="japt">
-<p>This is an interpreter.</p>
+<h2>Japt</h2>
+<p>Ah, Japt. My glorious creation. Coming soon to a webpage near you.</p>
 </div>
+
+<div id="fonts">
+<h2>Fonts</h2>
+<p>Ah, fonts. My glorious collection of creations. There will be a list here.</p>
+</div>
+
 </body>
 </html>
