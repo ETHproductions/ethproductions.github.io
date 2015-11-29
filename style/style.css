@@ -3,13 +3,16 @@
   background-color: #641083;
   color: white;
 }
+
 #japt, #fonts {
   display:none;
 }
+
 table {
   padding-left:25%;
   padding-right:25%;
 }
+
 a {
   font-size:16pt;
   padding-top:3px;
@@ -19,4 +22,12 @@ a {
   border:2px solid #A070B0;
   border-radius:8px;
   margin-right:20px;
+}
+
+textarea {
+  overflow:scroll;
+  overflow-x:scroll;
+  width:90%;
+  font-family:Consolas, Courier New, monospace;
+  font-size:10p
 }
