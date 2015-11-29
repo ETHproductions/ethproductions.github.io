@@ -25,9 +25,10 @@ a {
 }
 
 textarea {
-  overflow:scroll;
-  overflow-x:scroll;
-  width:90%;
+  overflow:auto;
+  overflow-x:auto;
+  width:60%;
   font-family:Consolas, Courier New, monospace;
-  font-size:10p
+  font-size:10p;
+  text-align:left;
 }
