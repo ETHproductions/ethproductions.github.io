@@ -19,11 +19,13 @@ Code:
 <p>Timeout: (doesn't work)
   <input id="timeout" type="checkbox" checked="checked">&nbsp;
   <br>
-  <br>
   <input id="run" type="button" value="Run" onclick="run()">
   <input id="stop" type="button" value="Stop" onclick="interrupt()" disabled="disabled">
-  <input id="clear" type="button" value="Clear" onclick="clear_output()">&nbsp; <span id="stderr" style="color:red"></span>
-</p>Output:
+  <input id="clear" type="button" value="Clear" onclick="clear_output()">
+  <br>
+  <span id="stderr" style="color:red"></span>
+</p>
+Output:
 <br>
 <textarea id="output" rows="6"></textarea>
 </body>
