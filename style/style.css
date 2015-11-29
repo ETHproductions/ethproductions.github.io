@@ -26,7 +26,7 @@ a {
 
 textarea {
   overflow:auto;
-  overflow-x:visible;
+  overflow-x:hidden;
   width:60%;
   font-family:Consolas, Courier New, monospace;
   font-size:10p;
