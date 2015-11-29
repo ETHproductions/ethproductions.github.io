@@ -1,0 +1,22 @@
+* {
+  text-align: center;
+  background-color: #641083;
+  color: white;
+}
+#japt, #fonts {
+  display:none;
+}
+table {
+  padding-left:25%;
+  padding-right:25%;
+}
+a {
+  font-size:16pt;
+  padding-top:3px;
+  padding-bottom:5px;
+  padding-left:8px;
+  padding-right:8px;
+  border:2px solid #A070B0;
+  border-radius:8px;
+  margin-right:20px;
+}
