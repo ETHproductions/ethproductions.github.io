@@ -26,9 +26,9 @@ a {
 
 textarea {
   overflow:auto;
-  overflow-x:scroll;
   width:60%;
   font-family:Consolas, Courier New, monospace;
   font-size:10p;
   text-align:left;
+  border-radius:8px;
 }
