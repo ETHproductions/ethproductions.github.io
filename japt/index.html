@@ -21,8 +21,6 @@
     return atob(text).replace(/\\u[0-9A-Fa-f]{4}/g,function(x){return String.fromCharCode(parseInt(x.slice(2),16))});
   }
   
-  alert(escapedAtoB("YWJjXHUwM2MweHl6"));
-  
   function splitAddress() {
     var args=location.search.match(/[&?](code|input|v)=([^&]|&(?!(code|input|v)=))*/g);
     var code="[U,V*Wg0 ,Wg1]qS";
@@ -41,7 +39,7 @@
     setTimeout(function(){
     document.getElementById("code").value=code;
     if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
-    },500);
+    },200);
   }
   
   function getURL() {
@@ -52,7 +50,7 @@
 </script>
 </head>
 <body onload="splitAddress()">
-<p> </p>
+<p>&nbsp;</p>
 <h1>Japt</h1>
 <p>Here lies some meaningless text.</p>
 Code:
