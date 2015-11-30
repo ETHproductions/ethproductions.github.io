@@ -18,7 +18,10 @@
       else
         v=tmp;
     }
-    document.getElementsByTagName('head')[0].appendChild('<script src="https://rawgit.com/ETHproductions/Japt/"+commit+"/src/japt-interpreter.js">\x3C/script>');
+    var script = document.createElement('script');
+    script.setAttribute("src","https://rawgit.com/ETHproductions/Japt/"+commit+"/src/japt-interpreter.js");
+    document.getElementsByTabName('head')[0].appendChild(script);
+
     document.getElementById("code").value=code,
     document.getElementById("js-code").value=transpile(code);
   }
