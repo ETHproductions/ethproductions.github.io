@@ -5,8 +5,14 @@
 <link rel="stylesheet" type="text/css" href="../style/style.css">
 <script src="https://rawgit.com/ETHproductions/Japt/master/dependencies/shoco.js"></script>
 <script src="https://rawgit.com/ETHproductions/Japt/master/src/japt-interpreter.js"></script>
+<script>
+  function splitAddress() {
+    var args=location.search.match(/[\&\?](code|input)\=(?!\&(code|input)\=)+/g);
+    alert(args);
+  }
+</script>
 </head>
-<body onload="alert(location.search.split('&input='))">
+<body onload="splitAddress()">
 <p> </p>
 <h1>Japt</h1>
 <p>Here lies some meaningless text.</p>
