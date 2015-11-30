@@ -5,9 +5,26 @@
 <link rel="stylesheet" type="text/css" href="../style/style.css">
 <script src="https://rawgit.com/ETHproductions/Japt/master/dependencies/shoco.js"></script>
 <script>
+  var v="master";
+  
+  function escapedBtoA(text) {
+    return btoa(
+      text.replace(/./g,function(x){
+        if(x.charCodeAt(0)<256)
+          return x;
+        return "\\u"+("00"+x.charCodeAt(0).toString(16)).slice(-4)
+      })
+    );
+  }
+  
+  function escapedAtoB(text) {
+    return atob(text).replace(/\\u[0-9A-Fa-f]{4}/g,function(x){return String.fromCharCode(x.slice(2))});
+  }
+  
+  alert(escapedBtoA("abcπxyz"));
+  
   function splitAddress() {
     var args=location.search.match(/[&?](code|input|v)=([^&]|&(?!(code|input|v)=))*/g);
-    var v="master";
     var code="[U,V*Wg0 ,Wg1]qS";
     if(args)for(var i of args){
       var tmp=i.slice(i.indexOf('=')+1).replace(/%[0-9A-F]{2}/g,function(x){return String.fromCharCode(parseInt(x.slice(1),16))});
@@ -25,6 +42,12 @@
     document.getElementById("code").value=code;
     if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
     },500);
+  }
+  
+  function getURL() {
+    var code = escapedBtoA(document.getElementById("code").value);
+    var input = escapedBtoA(document.getElementById("input").value);
+    document.getElementById("output") = "http://ethproductions.github.io/japt?v="+v+"&code="+code+"&input="+input;
   }
 </script>
 </head>
@@ -45,6 +68,8 @@ Code:
   <input id="run" type="button" value="Run" onclick="run()">
   <input id="stop" type="button" value="Stop" onclick="interrupt()" disabled="disabled">
   <input id="clear" type="button" value="Clear" onclick="clear_output()">
+  <br>
+  <input id="permalink" type="button" value="Permalink" onclick="getURL()">
   <br>
   <span id="stderr" style="color:red"></span>
 </p>
