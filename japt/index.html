@@ -22,7 +22,7 @@
     script.setAttribute("src","https://rawgit.com/ETHproductions/Japt/"+v+"/src/japt-interpreter.js");
     document.getElementsByTagName('head')[0].appendChild(script);
     setTimeout(function(){
-    document.getElementById("code").value=code,
+    document.getElementById("code").value=code;
     if(transpile)document.getElementById("js-code").value=transpile(code);
     },100);
   }
