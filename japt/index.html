@@ -9,11 +9,12 @@
   function splitAddress() {
     var args=location.search.match(/[&?](code|input)=([^&]|&(?!(code|input)=))*/g);
     for(var i of args){
+      var tmp=i.slice(i.indexOf('=')+1).replace(/%[0-9A-F]{2}/g,function(x){return String.fromCharCode(parseInt(x.slice(1),16))});
       if(i.slice(1,i.indexOf('='))==="code")
-        document.getElementById("code").value=i.slice(i.indexOf('=')+1),
-        document.getElementById("js-code").value=transpile(i.slice(i.indexOf('=')+1));
+        document.getElementById("code").value=tmp,
+        document.getElementById("js-code").value=transpile(tmp);
       else
-        document.getElementById("input").value=i.slice(i.indexOf('=')+1);
+        document.getElementById("input").value=tmp;
     }
   }
 </script>
