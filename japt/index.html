@@ -12,12 +12,13 @@
 <p>Here lies some meaningless text.</p>
 Code:
 <br>
-<textarea id="code" rows="8">[U,V*Wg0 ,Wg1]qS</textarea>
+<textarea id="code" rows="8">[U,V*Wg0 ,Wg1]qS</textarea><textarea id="js-code" rows="8" readonly>[U,V*W.g(0),W.g(1)].q(S)</textarea>
 <br>Input:
 <br>
-<textarea id="input" rows="3">"abc" 13 [9 "zyx"]</textarea>
+<textarea id="input" rows="6">"abc" 13 [9 "zyx"]</textarea><textarea id="output" rows="6"></textarea>
 <p>Timeout: (doesn't work)
   <input id="timeout" type="checkbox" checked="checked">&nbsp;
+  <br>
   <br>
   <input id="run" type="button" value="Run" onclick="run()">
   <input id="stop" type="button" value="Stop" onclick="interrupt()" disabled="disabled">
@@ -25,8 +26,5 @@ Code:
   <br>
   <span id="stderr" style="color:red"></span>
 </p>
-Output:
-<br>
-<textarea id="output" rows="6"></textarea>
 </body>
 </html>
