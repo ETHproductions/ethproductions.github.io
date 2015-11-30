@@ -12,7 +12,7 @@
 <p>Here lies some meaningless text.</p>
 Code:
 <br>
-<textarea id="code" rows="8">[U,V*Wg0 ,Wg1]qS</textarea><textarea id="js-code" rows="8" readonly>[U,V*W.g(0),W.g(1)].q(S)</textarea>
+<textarea id="code" rows="8" onkeypress="document.getElementById('js-code').value=transpile(document.getElementById('code').value)">[U,V*Wg0 ,Wg1]qS</textarea><textarea id="js-code" rows="8" readonly>[U,V*W.g(0),W.g(1)].q(S)</textarea>
 <br>Input:
 <br>
 <textarea id="input" rows="6">"abc" 13 [9 "zyx"]</textarea><textarea id="output" rows="6"></textarea>
