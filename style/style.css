@@ -26,9 +26,10 @@ a {
 
 textarea {
   overflow:auto;
-  width:60%;
+  width:30%;
   font-family:Consolas, Courier New, monospace;
   font-size:10p;
   text-align:left;
   border-radius:8px;
+  margin:8px;
 }
