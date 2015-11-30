@@ -7,7 +7,6 @@
 <script src="https://rawgit.com/ETHproductions/Japt/master/src/japt-interpreter.js"></script>
 <script>
   function splitAddress() {
-    alert("is this working?");
     var args=location.search.match(/[&?](code|input)=([^&]|&(?!(code|input)=))*/g);
     for(var i of args){
       if(i.slice(1,i.indexOf('='))==="code")
