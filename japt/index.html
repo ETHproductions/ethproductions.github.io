@@ -23,7 +23,7 @@
     document.getElementsByTagName('head')[0].appendChild(script);
     setTimeout(function(){
     document.getElementById("code").value=code,
-    document.getElementById("js-code").value=transpile(code);
+    if(transpile)document.getElementById("js-code").value=transpile(code);
     },100);
   }
 </script>
