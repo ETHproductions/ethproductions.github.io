@@ -72,7 +72,7 @@ Code:
   <br>
   <br>
   <input id="text-file" type="file" value="Upload a file..." onsubmit="document.getElementById('code').value=this.value" />
-  <input id="submit" type="button" value="Submit" onclick="document.getElementById('code').value=document.getElementById('text-file').files[0]"></button>
+  <input id="submit" type="button" value="Submit" onclick="var fr=FileReader();fr.onload=function(){document.getElementById('code').value=fr.result};fr.readAsText(document.getElementById('text-file').files[0])"></button>
   <br>
   <span id="stderr" style="color:red"></span>
 </p>
