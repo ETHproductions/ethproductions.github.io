@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
 <title>Japt interpreter</title>
 <link rel="stylesheet" type="text/css" href="../style/style.css">
 <script src="https://rawgit.com/ETHproductions/Japt/master/dependencies/shoco.js"></script>
@@ -68,7 +67,11 @@ Code:
   <input id="stop" type="button" value="Stop" onclick="interrupt()" disabled="disabled">
   <input id="clear" type="button" value="Clear" onclick="clear_output()">
   <br>
+  <br>
   <input id="permalink" type="button" value="Permalink" onclick="getURL()">
+  <br>
+  <br>
+  <input id="text-file" type="file" value="Upload a file..." onsubmit="document.getElementById('code').value=this.value" />
   <br>
   <span id="stderr" style="color:red"></span>
 </p>
