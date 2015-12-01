@@ -25,7 +25,7 @@
     var args=location.search.match(/[&?](code|input|v)=([^&]|&(?!(code|input|v)=))*/g);
     var code="[U,V*Wg0 ,Wg1]qS";
     if(args)for(var i of args){
-      var tmp=i.slice(i.indexOf('=')+1).replace(/%[0-9A-F]{2}/g,function(x){return String.fromCharCode(parseInt(x.slice(1),16))});
+      var tmp=escapedAtoB(i.slice(i.indexOf('=')+1));
       if(i.slice(1,i.indexOf('='))==="code")
         code=tmp;
       else if(i.slice(1,i.indexOf('='))==="input")
