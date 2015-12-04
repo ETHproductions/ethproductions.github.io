@@ -1,7 +1,7 @@
 * {
-  text-align: center;
-  background-color: #F9F7F5;
+  background-color: #E9E7E5;
   color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 #japt, #fonts {
@@ -20,7 +20,7 @@ td {
 	padding-left: 2px;
 	padding-right: 2px;
 	color: black;
-	font-family: Consolas, Courier New, monospace;
+	font-family: Inconsolata, Consolas, monospace;
 	border-radius: 4px;
 }
 
@@ -37,22 +37,34 @@ td {
 
 textarea {
   overflow: auto;
-  width: 300px;
-  font-family: Consolas, Courier New, monospace;
+  width: 100%;
+  font-family: Inconsolata, Consolas, monospace;
   font-size: 10p;
   text-align: left;
   border-radius: 8px;
   margin: 8px;
 }
 
+#GUI {
+	width: 50%;
+}
+#GUI * {
+	text-align: left;
+}
+
+#left-column, #right-column {
+	width: 48%;
+}
+
 #docs {
+	width: 44%;
+	height: 600px;
 	float: right;
 	margin-right: 10px;
 	padding: 5px;
+	padding-left: 10px;
 	border: 2px solid #666;
 	overflow-y: scroll;
-	width: 260px;
-	height: 500px;
 	font-size: 14px;
 	line-height: 115%;
 	border-radius: 8px;
@@ -62,23 +74,28 @@ textarea {
 	background-color: #EEE;
 }
 
-#pad-left {
-	float: left;
-	margin-left: 10px;
-	padding: 5px;
-	display: hidden;
-	width: 260px;
-	height: 500px;
+h2 {
+	padding-top: 8px;
 }
 
 .code {
 	border: 1px solid #CCCCCC;
-	border-radius: 4px;
-	background-color: #E9E9E9;
+	border-radius: 3px;
 	padding-left: 3px;
 	padding-right: 3px;
 	margin-left: 1px;
 	margin-right: 1px;
 	color: black;
-	font-family: Consolas, Courier New, monospace;
+	padding-bottom: 2px;
+	font-family: Inconsolata, Consolas, monospace;
+}
+
+.arrow {
+	text-decoration: none;
+	border: 2px solid #3E2;
+	border-radius: 6px;
+	padding-left: 4px;
+	padding-right: 4px;
+	color: #FAFEFD;
+	cursor: pointer;
 }

@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
 <title>Japt interpreter</title>
 <link rel="stylesheet" type="text/css" href="../style/style.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
 <script src="https://rawgit.com/ETHproductions/Japt/master/dependencies/shoco.js"></script>
 <script>
   var v="master";
@@ -25,12 +27,13 @@
   function splitAddress() {
     var args=location.search.match(/[&?](code|input|v)=([^&]|&(?!(code|input|v)=))*/g);
     var code="[U,V*Wg0 ,Wg1]qS";
+	var input='"abc" 13 [9 "zyx"]';
     if(args)for(var i of args){
       var tmp=i.slice(i.indexOf('=')+1);
       if(i.slice(1,i.indexOf('='))==="code")
         code=escapedAtoB(tmp);
       else if(i.slice(1,i.indexOf('='))==="input")
-        document.getElementById("input").value=escapedAtoB(tmp);
+        input=escapedAtoB(tmp);
       else
         v=tmp;
     }
@@ -38,12 +41,15 @@
     script.setAttribute("src","https://rawgit.com/ETHproductions/Japt/"+v+"/src/japt-interpreter.js");
     document.getElementsByTagName('head')[0].appendChild(script);
     setTimeout(function(){
-    document.getElementById("code").value=code;
-    if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
+      document.getElementById("code").value=code;
+      if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
+	  document.getElementById("input").value=input;
     },200);
-	for(var a of ["p","h3"])
+	for(var a of ["p","h1","h2","h3"])
 	  for(var item of document.body.getElementsByTagName(a))
-	    item.innerHTML=item.innerHTML.replace(/(`{1,3})((?:.(?!\1))*[^`])\1/g,function(_,_,x){return'<span class="code">'+(x.length>1?x.trimRight():x)+'</span>'});
+	    item.innerHTML=item.innerHTML
+			.replace(/(`{1,3})((?:.(?!\1))*[^`])\1/g,function(_,_,x){return'<span class="code" style="background-color:#F1E9E5">'+(x.length>1?x.trimRight():x)+'</span>'})
+			.replace(/arrow:([a-z-]+)/g,'<a class="arrow"; id="toggle-$1"; onclick="toggleTab(\'$1\')" style="background-color:#3E2">▼</a>');
   }
   
   function getURL() {
@@ -61,22 +67,20 @@
 </script>
 </head>
 <body onload="splitAddress()">
-<p>&nbsp;</p>
-<h1>Japt</h1>
 <div id="docs">
 <h1>Japt Docs</h1>
 <p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>.
 
-<h2>Syntax <a href="#" id="toggle-syntax" onclick="toggleTab('syntax')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:syntax Syntax</h2>
 <div id="syntax" style="display:none">
 <h3>Parentheses</h3>
 <p>`)` transpiles to `))`.</p>
 <p>`&nbsp;` transpiles to `)`.</p>
 <p>Parens left out at `;[]{}` or at the end of the program are auto-inserted.
 
-<h3>Variables & Functions</h3>
-<p>`A-Z` are pre-defined variables.</p>
-<p>`a-z` are various functions, and transpile to `.a(`.</p>
+<h3>Variables & functions</h3>
+<p>`A-Z` are pre-defined variables. See the Variables table for more info.</p>
+<p>`a-z` are various functions, and transpile to `.a(`. See the Functions tables below.</p>
 <p>`ABC{` starts an anonymous function with parameters `A`, `B`, and `C`. Equivalent to `function(A,B,C){`</p>
 
 <h3>Shortcuts</h3>
@@ -84,17 +88,21 @@
 <p>`#a` transpiles to `97`, the char-code of `a`.</p>
 
 <h3>Strings</h3>
-<p>`"abc{U}xyz"` transpiles to<br>`"abc"+(U)+"xyz"`.</p>
-<p>`U?"abc:xyz"` transpiles to<br>`U?"abc":"xyz"`.</p>
+<p>`"abc{U}xyz"` transpiles to `"abc"+(U)+"xyz"`.</p>
+<p>`U?"abc:xyz"` transpiles to `U?"abc":"xyz"`.</p>
+
+<h3>String compression</h3>
+<p>Japt uses the <a href="http://ed-von-schleck.github.io/shoco/">shoco library</a> for string compression. It can compress almost any string of lowercase letters, often saving quite a few bytes. Here's how to use it:</p>
 <p>`Oc"text"` compresses the text.</p>
 <p>`Od"text"` decompresses the text.</p>
 <p>`` `text` `` also decompresses the text.</p>
+
 <h3>Miscellaneous</h3>
 <p>`$...$` is evaluated as pure JS.</p>
 <p>Any of ``"`$`` left out at the end of the program is auto-inserted.</p>
 </div>
 
-<h2>Variables <a href="#" id="toggle-variables" onclick="toggleTab('variables')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:variables Variables</h2>
 <div id="variables" style="display:none">
 <table>
   <tr><td><b>Var</b></td><td><b>Value</b></td></tr>
@@ -122,7 +130,7 @@
 </table>
 </div>
 
-<h2>String Functions <a href="#" id="toggle-string-funcs" onclick="toggleTab('string-funcs')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:string-funcs String functions</h2>
 <div id="string-funcs" style="display:none">
 <h3>`b(s)`</h3>
 <p>Returns the index of `s` in `this`.</p>
@@ -154,13 +162,15 @@
 <p>Splits `this` with `s`, maps each item by `f`, then rejoins with `s`.</p>
 <h3>`n(n)`</h3>
 <p>Returns `parseInt(this,n)`.</p>
+<h3>`o(s)`</h3>
+<p>Removes all characters not in `s` from `this`.</p>
 <h3>`p(n)`</h3>
 <p>Returns `this` repeated `n` times.</p>
 <h3>`q(s="")`</h3>
 <p>Returns `this` split with `s`.</p>
-<h3>`r(r,s)`</h3>
+<h3>`r(r,s="")`</h3>
 <p>Replaces `r` with `s` in `this`.</p>
-<h3>`r(s,s,s="g")`</h3>
+<h3>`r(s,s="",s="g")`</h3>
 <p>Replaces `RegExp(s₁,s₃)` with `s₂` in `this`.</p>
 <h3>`s(n,n?)`</h3>
 <p>Returns `this.slice(n₁,n₂)`.</p>
@@ -174,7 +184,7 @@
 <p>Returns `this.reverse()`.</p>
 </div>
 
-<h2>Array Functions <a href="#" id="toggle-array-funcs" onclick="toggleTab('array-funcs')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:array-funcs Array functions</h2>
 <div id="array-funcs" style="display:none">
 <h3>`b(a)`</h3>
 <p>Returns the index of `a` in `this`.</p>
@@ -228,7 +238,7 @@
 <p>If `this` is a 2D array, or an array of strings, rotates `this` by `n*90` degrees clockwise.</p>
 </div>
 
-<h2>Number Functions <a href="#" id="toggle-number-funcs" onclick="toggleTab('number-funcs')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:number-funcs Number functions</h2>
 <div id="number-funcs" style="display:none">
 <h3>`a()`</h3>
 <p>Returns the absolute value of `this`.</p>
@@ -254,8 +264,10 @@
 <p>Returns the smaller of `this` and `n`.</p>
 <h3>`n(n)`</h3>
 <p>Returns `-this`.</p>
+<h3>`o()`</h3>
+<p>Returns an array of all integers in the range `[this,n₁)`.</p>
 <h3>`o(n,n=1)`</h3>
-<p>Returns an array of all numbers in the range `[this,n₁)`, generated by starting at `this` and repeatedly adding `n₂`.</p>
+<p>Returns an array of numbers in the range `[this,n₁)`, generated by starting at `this` and repeatedly adding `n₂`.</p>
 <h3>`p(n)`</h3>
 <p>Returns `this` to the `n`th power.</p>
 <h3>`q()`</h3>
@@ -272,23 +284,78 @@
 <p>Returns the larger of `this` and `n`.</p>
 </div>
 
-<h2>Examples <a href="#" id="toggle-examples" onclick="toggleTab('examples')" style="color:#961;text-decoration:none">▼</a></h2>
+<h2>arrow:unicode-shortcuts Unicode shortcuts</h2>
+<div id="unicode-shortcuts" style="display:none">
+<table>
+  <tr><td><b>Char</b></td><td><b>Value</b></td></tr>
+  <tr><td>¡</td><td>Um@</td></tr>
+  <tr><td>¢</td><td>Us2&nbsp;</td></tr>
+  <tr><td>£</td><td>m@</td></tr>
+  <tr><td>¤</td><td>s2&nbsp;</td></tr>
+  <tr><td>¥</td><td>==</td></tr>
+  <tr><td>¦</td><td>!=</td></tr>
+  <tr><td>§</td><td>&lt;=</td></tr>
+  <tr><td>¨</td><td>&gt;=</td></tr>
+  <tr><td>©</td><td>&amp;&amp;</td></tr>
+  <tr><td>ª</td><td>||</td></tr>
+  <tr><td>«</td><td>&amp;&amp;!</td></tr>
+  <tr><td>¬</td><td>q&nbsp;</td></tr>
+  <tr><td>®</td><td>m_</td></tr>
+  <tr><td>¯</td><td>s0,</td></tr>
+  <tr><td>°</td><td>++</td></tr>
+  <tr><td>±</td><td>+=</td></tr>
+  <tr><td>²</td><td>p2&nbsp;</td></tr>
+  <tr><td>³</td><td>p3&nbsp;</td></tr>
+  <tr><td>´</td><td>--</td></tr>
+  <tr><td>µ</td><td>-=</td></tr>
+  <tr><td>¶</td><td>===</td></tr>
+  <tr><td>·</td><td>qR&nbsp;</td></tr>
+  <tr><td>¸</td><td>qS&nbsp;</td></tr>
+  <tr><td>¹</td><td>) </td></tr>
+  <tr><td>º</td><td>((</td></tr>
+  <tr><td>»</td><td>(((</td></tr>
+  <tr><td>¼</td><td>.25</td></tr>
+  <tr><td>½</td><td>.5</td></tr>
+  <tr><td>¾</td><td>.75</td></tr>
+</table>
+</div>
+
+<h2>arrow:examples Examples</h2>
 <div id="examples" style="display:none">
 <p><a href="#" onclick="document.getElementById('code').value='&quot;Hello, World!'">"Hello, World!"</a></p>
 <p><a href="#" onclick="document.getElementById('code').value=shoco.c('`Hello, World!')">"Hello, World!" 2</a></p>
 <p><a href="#" onclick="document.getElementById('code').value='N'">`cat`</a></p>
-<p><a href="#" onclick="document.getElementById('code').value='1o#e m@&quot;FizzBuzz&quot;sX%3&&4,X%5?4:8 ||X}) qR'">FizzBuzz</a></p>
+<p><a href="#" onclick="document.getElementById('code').value='1o#e m@&quot;FizzBuzz&quot;sX%3©4X%5?4:8 ªX}) qR'">FizzBuzz</a></p>
 </div>
 </div>
 
-<div id="pad-left"></div>
-Code:<a style="margin-right:300px">&nbsp;</a>JS code:
-<textarea id="code" title="code" rows="8" onkeypress="setTimeout(function(){document.getElementById('js-code').value=transpile(document.getElementById('code').value)},10)">[U,V*Wg0 ,Wg1]qS</textarea>
-<textarea id="js-code" rows="8" readonly>[U,V*W.g(0),W.g(1)].q(S)</textarea>
-<br>Input:<a style="margin-right:300px">&nbsp;</a>Output:
-<br>
-<textarea id="input" rows="6">"abc" 13 [9 "zyx"]</textarea><textarea id="output" rows="6" readonly></textarea>
-<p>Timeout: (doesn't work)
+<div id="GUI">
+<h1>&nbsp;&nbsp;Japt Interpreter</h1>
+  <div id="left-column" style="float:left">
+  <p>
+  &nbsp;&nbsp;Code:
+  <br>
+  <textarea id="code" title="code" rows="8" placeholder="Enter your code here..." onkeypress="setTimeout(function(){document.getElementById('js-code').value=transpile(document.getElementById('code').value)},10)">[U,V*Wg0 ,Wg1]qS</textarea>
+  <br>
+  &nbsp;&nbsp;Input:
+  <br>
+  <textarea id="input" placeholder="Enter input here..." rows="6"></textarea>
+  </p>
+  </div>
+  <div id="right-column" style="float:right">
+  <p>
+  &nbsp;&nbsp;JS code:
+  <br>
+  <textarea id="js-code" rows="8" placeholder="Transpiled code appears here." readonly ></textarea>
+  <br>
+  &nbsp;&nbsp;Output:
+  <br>
+  <textarea id="output" placeholder="Output appears here." rows="6" readonly ></textarea>
+  </p>
+  </div>
+  <br>
+  <br>
+  Timeout: (doesn't work)
   <input id="timeout" type="checkbox" checked="checked">&nbsp;
   <br>
   <br>
@@ -306,5 +373,6 @@ Code:<a style="margin-right:300px">&nbsp;</a>JS code:
   <br>
   <span id="stderr" style="color:red"></span>
 </p>
+</div>
 </body>
 </html>
