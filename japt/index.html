@@ -44,7 +44,7 @@
       document.getElementById("code").value=code;
       if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
 	  document.getElementById("input").value=input;
-    },200);
+    },500);
 	for(var a of ["p","h1","h2","h3"])
 	  for(var item of document.body.getElementsByTagName(a))
 	    item.innerHTML=item.innerHTML
