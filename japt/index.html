@@ -80,19 +80,23 @@
 
 <h3>Variables & functions</h3>
 <p>`A-Z` are pre-defined variables. See the Variables table for more info.</p>
-<p>`a-z` are various functions, and transpile to `.a(`. See the Functions tables below.</p>
-<p>`ABC{` starts an anonymous function with parameters `A`, `B`, and `C`. Equivalent to `function(A,B,C){`</p>
+<p>`a-z` are various functions, and transpile to e.g. `.a(`. See the Functions tables below.</p>
+<p>`ABC{` starts an anonymous function with parameters `A`, `B`, and `C`. Equivalent to `function(A,B,C){`.</p>
+<p>If `a-z` is the first item in a function call, it is transpiled to `function(c){return c.(letter)()}`.</p>
+<p>If an infix operator is the first item in a function call, it is transpiled to `function(a,b){return a(operator)b}`.</p>
+<p>If the above is prefixed by `!`, it is transpiled to `function(a,b){return b(operator)a}`.</p>
 
 <h3>Shortcuts</h3>
 <p>`'a` transpiles to `"a"`.</p>
 <p>`#a` transpiles to `97`, the char-code of `a`.</p>
+<p>Anything between `¡` and `Þ` transpiles to a two-or-more-byte sequence. See the Unicode shortcuts table below.</p>
 
 <h3>Strings</h3>
 <p>`"abc{U}xyz"` transpiles to `"abc"+(U)+"xyz"`.</p>
 <p>`U?"abc:xyz"` transpiles to `U?"abc":"xyz"`.</p>
 
 <h3>String compression</h3>
-<p>Japt uses the <a href="http://ed-von-schleck.github.io/shoco/">shoco library</a> for string compression. It can compress almost any string of lowercase letters, often saving quite a few bytes. Here's how to use it:</p>
+<p>Japt uses the <a href="http://ed-von-schleck.github.io/shoco/">shoco library</a> for string compression. It can compress almost any string that contains lowercase letters, often saving quite a few bytes. Here's how to use it:</p>
 <p>`Oc"text"` compresses the text.</p>
 <p>`Od"text"` decompresses the text.</p>
 <p>`` `text` `` also decompresses the text.</p>
@@ -132,6 +136,8 @@
 
 <h2>arrow:string-funcs String functions</h2>
 <div id="string-funcs" style="display:none">
+<h3>`a(s)`</h3>
+<p>Returns the last index of `s` in `this`.</p>
 <h3>`b(s)`</h3>
 <p>Returns the index of `s` in `this`.</p>
 <h3>`c(n=0)`</h3>
@@ -170,8 +176,8 @@
 <p>Returns `this` split with `s`.</p>
 <h3>`r(r,s="")`</h3>
 <p>Replaces `r` with `s` in `this`.</p>
-<h3>`r(s,s="",s="g")`</h3>
-<p>Replaces `RegExp(s₁,s₃)` with `s₂` in `this`.</p>
+<h3>`r(s,s="",s="")`</h3>
+<p>Replaces `RegExp(s₁,s₃+"g")` with `s₂` in `this`.</p>
 <h3>`s(n,n?)`</h3>
 <p>Returns `this.slice(n₁,n₂)`.</p>
 <h3>`t(n,n?)`</h3>
@@ -186,10 +192,12 @@
 
 <h2>arrow:array-funcs Array functions</h2>
 <div id="array-funcs" style="display:none">
+<h3>`a(a)`</h3>
+<p>Returns the last index of `a` in `this`.</p>
 <h3>`b(a)`</h3>
 <p>Returns the index of `a` in `this`.</p>
-<h3>`c(a)`</h3>
-<p>Returns the last index of `a` in `this`.</p>
+<h3>`c()`</h3>
+<p>Flattens `this`, i.e. expands all sub-arrays into the main array.</p>
 <h3>`d(f)`</h3>
 <p>Maps each item in `this` through `f`, then returns `true` if any are truthy, and `false` otherwise.</p>
 <h3>`e(f)`</h3>
@@ -236,6 +244,18 @@
 <p>If `this` is a 2D array, or an array of strings, transposes rows with columns.</p>
 <h3>`z(n=1)`</h3>
 <p>If `this` is a 2D array, or an array of strings, rotates `this` by `n*90` degrees clockwise.</p>
+<h3>`à(n?)`</h3>
+<p>Returns all combinations of `this`. If `n` is specified, only returns the combinations of length `n`.</p>
+<h3>`á(n?)`</h3>
+<p>Returns all unique permutations of `this`. If `n` is specified, returns the unique permutations of length `n`.</p>
+<h3>`â()`</h3>
+<p>Returns all unique items of `this`, in original order.</p>
+<h3>`ã(n=2)`</h3>
+<p>Returns an array of all subsections of `this` of length `n`.</p>
+<h3>`ä(f)`</h3>
+<p>Takes `this.ã()` and reduces each item with `f`.</p>
+<h3>`å(f)`</h3>
+<p>Cumulative reduce; like `r`, but returns an array of each intermediate value.</p>
 </div>
 
 <h2>arrow:number-funcs Number functions</h2>
@@ -317,6 +337,10 @@
   <tr><td>¼</td><td>.25</td></tr>
   <tr><td>½</td><td>.5</td></tr>
   <tr><td>¾</td><td>.75</td></tr>
+  <tr><td>À</td><td>!==</td></tr>
+  <tr><td>Á</td><td>>>></td></tr>
+  <tr><td>Â</td><td>~~</td></tr>
+  <tr><td>Ã</td><td>}&nbsp;</td></tr>
 </table>
 </div>
 
