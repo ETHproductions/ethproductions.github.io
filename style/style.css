@@ -8,14 +8,14 @@
   display: none;
 }
 
-table {
+.code-table {
 	border-collapse: collapse;
 	margin-left: 50px;
 	table-layout: fixed;
 	width: 150px;
 }
 
-td {
+.code-table tr td {
 	border: 1px solid #CCCCCC;
 	padding-left: 2px;
 	padding-right: 2px;
@@ -26,13 +26,15 @@ td {
 
 .button1 {
   font-size: 16pt;
+  font-weight: 700;
   padding-top: 3px;
   padding-bottom: 5px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
   border: 2px solid #A070B0;
   border-radius: 8px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 textarea {
