@@ -2,8 +2,40 @@
 <html>
 	<head>
 		<title>infimath.js - Arbitrary-precision math library</title>
+		<script src="https://rawgit.com/ETHproductions/infimath.js/master/src/infimath.js" type="text/js"></script>
+		<script>
+		var testcases = {
+			"Leading zeroes":["infimath.formatNum('0001230.0456')","1230.0456"],
+			"Trailing zeroes":["infimath.formatNum('1230.0456000')","1230.0456"],
+			"Adding nothing":["infimath.add()","0"],
+			"Adding one number":["infimath.add('1')","1"],
+			"Adding two numbers":["infimath.add('2','2')","4"],
+			"Adding many numbers":["infimath.add('1','1','1','1','1','1','1','1','1')","9"],
+			"Adding big numbers":["infimath.add('123456789','987654321')","1111111110"],
+			"Adding decimals":["infimath.add('1.234','5.6789')","6.9129"]
+		}
+		setTimeout(function(){
+		Object.keys(testcases).map(function(item,index){
+			var tr = document.getElementById("test-table").insertRow(index+1);
+			tr.insertCell(0).innerHTML = item;
+			var code = testcases[item][0];
+			tr.insertCell(1).innerHTML = code;
+			var expected = testcases[item][1];
+			tr.insertCell(2).innerHTML = expected;
+			var result = "ERROR";
+			try{result=eval(code)}catch(e){result=e}finally{tr.insertCell(3).innerHTML=result}
+			if(result==expected)
+				tr.insertCell(4).innerHTML = '<span style="background-color:lime">Yes</span>';
+			else
+				tr.insertCell(4).innerHTML = '<span style="background-color:red">No</span>';
+		});
+		},500);
+		</script>
 	<head>
 	<body>
-		<p>Nothing to see here (yet)!</p>
+		<p>Not much to see here (yet)!</p>
+		<table id="test-table">
+			<tr><th>Test</th><th>Code</th><th>Expected</th><th>Real</th><th>Worked</th></tr>
+		</table>
 	</body>
 </html>
