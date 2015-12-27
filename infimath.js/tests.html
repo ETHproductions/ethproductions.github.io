@@ -53,6 +53,49 @@
 			["Adding an actual number","'1'.plus(2)","3"],
 			["Adding a negative","'123'.plus('-45')","78"],
 			["Adding two negatives","'-12.3'.plus('-4.567')","-20.867"],
+			["a",1],
+			["infimath.subtract",0],
+			["Subtracting nothing","infimath.subtract()","0"],
+			["Subtracting one number","infimath.subtract('1')","-1"],
+			["Subtracting two numbers","infimath.subtract('3', '2.')","1"],
+			["Subtracting many numbers","infimath.subtract('10', '1', '1', '1', '1', '1', '1.', '1.0', '1.0000')","2"],
+			["Subtracting decimals","infimath.subtract('12.34','5.6789')","6.6611"],
+			["Subtracting big numbers","infimath.subtract('1234567890123456789', '987654321987654321')","246913568135802468"],
+			["Subtracting many big decimals","infimath.subtract('209462432422385.74830385', '998354298.00000000000000000000000', '120873502934345', '1.2345678901234567890123456789')","88587931133741.5137359598765432109876543211"],
+			["Subtracting an actual number","infimath.subtract('5', 2)","3"],
+			["Subtracting two actual numbers","infimath.subtract(7, 3)","4"],
+			["Subtracting a negative","infimath.subtract('12', '-34')","46"],
+			["Subtracting two negatives","infimath.subtract('-12.3', '-4.567')","-7.733"],
+			["a",1],
+			["String.prototype.minus",0],
+			["Subtracting nothing","'123'.minus()","123"],
+			["Subtracting one number","'123'.minus('45')","78"],
+			["Subtracting many numbers","'123'.minus('1', '2', '3', '4', '5', '6', '7.', '8.0', '9.0000')","78"],
+			["Subtracting decimals","'12.345'.minus('6.7890')","5.555"],
+			["Subtracting big numbers","'1234567890123456789'.minus( '9876543210123456789')","-8641975320000000000"],
+			["Subtracting many big decimals","'209462432422385.74830385'.minus( '120873502934345', '998354298.00000000000000000000000', '1.2345678901234567890123456789')","88587931133741.5137359598765432109876543211"],
+			["Subtracting an actual number","'3'.minus(2)","1"],
+			["Subtracting a negative","'123'.minus('-45')","168"],
+			["Subtracting two negatives","'-12.3'.minus('-4.567')","-7.733"],
+			["a",1],
+			["infimath.multiply",0],
+			["a",1],
+			["String.prototype.times",0],
+			["a",1],
+			["infimath.divide",0],
+			["a",1],
+			["String.prototype.over",0],
+			["a",1],
+			["Constants",0],
+			["infimath.PI","infimath.PI.slice(0,28)","3.14159265358979323846264338"],
+			["infimath.PHI","infimath.PHI.slice(0,28)","1.61803398874989484820458683"],
+			["infimath.E","infimath.E.slice(0,28)","2.71828182845904523536028747"],
+			["infimath.SQRT_2","infimath.SQRT_2.slice(0,28)","1.41421356237309504880168872"],
+			["infimath.SQRT_1_2","infimath.SQRT_1_2.slice(0,28)","0.70710678118654752440084436"],
+			["infimath.LN_2","infimath.LN_2.slice(0,28)","0.69314718055994530941723212"],
+			["infimath.LN_10","infimath.LN_10.slice(0,28)","2.30258509299404568401799145"],
+			["infimath.LOG2E","infimath.LOG2E.slice(0,28)","1.44269504088896340735992468"],
+			["infimath.LOG10E","infimath.LOG10E.slice(0,28)","0.43429448190325182765112891"],
 			["a",1]
 		];
 		setTimeout(function(){
@@ -63,7 +106,7 @@
 		var th, tr, td, code, expected, result;
 		toggleTab = function(tabnum) {
 			var tabs = document.getElementsByClassName("tab-"+tabnum);
-			var arrow = document.getElementById("arrow-"+tabnum);
+			var arrow = document.getElementById("toggle-"+tabnum);
 			if (arrow.innerHTML == "▼") {
 				for(var item of tabs) item.style.display = "table-row";
 				arrow.innerHTML="▲";
@@ -78,12 +121,12 @@
 			if(item[1]===0) {
 				th = document.createElement("th");
 				th.innerHTML = item[0];
-				th.innerHTML += ' <a href="#" id="arrow-'+categories+'" class="arrow" style="background-color:#3E2" onclick="toggleTab('+categories+')">▼</a>'
+				th.innerHTML += ' <a id="toggle-'+categories+'" class="arrow" style="background-color:#3E2" onclick="toggleTab('+categories+')">▼</a>'
 				tr.appendChild(th);
 				return;
 			} else if(item[1]===1) {
 				categories++;
-				totalSuccess += sectionSuccess/sections;
+				totalSuccess += sectionSuccess/sections||0;
 				th = document.createElement("th");
 				th.innerHTML = "Section total: "+sectionSuccess+"/"+sections+"<br>&nbsp;";
 				tr.appendChild(th);
