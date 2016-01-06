@@ -44,14 +44,15 @@
       document.getElementById("code").value=code;
       if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
 	  document.getElementById("input").value=input;
+      for(var a of ["p","h1","h2","h3"])
+	for(var item of document.body.getElementsByTagName(a))
+	  alert(item.innerHTML),
+	  item.innerHTML=item.innerHTML
+	    .replace(/(`{1,3})((?:.(?!\1))*[^`])\1/g,function(_,_,x){return'<span class="code" style="background-color:#F1E9E5">'+(x.length>1?x.trimRight():x)+'</span>'})
+	    .replace(/arrow:([a-z-]+)/gi,'<a class="arrow"; id="toggle-$1"; onclick="toggleTab(\'$1\')" style="background-color:#3E2">▼</a>');
+  
     },500);
-	for(var a of ["p","h1","h2","h3"])
-	  for(var item of document.body.getElementsByTagName(a))
-	    alert(item.innerHTML),
-	    item.innerHTML=item.innerHTML
-			.replace(/(`{1,3})((?:.(?!\1))*[^`])\1/g,function(_,_,x){return'<span class="code" style="background-color:#F1E9E5">'+(x.length>1?x.trimRight():x)+'</span>'})
-			.replace(/arrow:([a-z-]+)/gi,'<a class="arrow"; id="toggle-$1"; onclick="toggleTab(\'$1\')" style="background-color:#3E2">▼</a>');
-  }
+}
   
   function getURL() {
     var code = escapedBtoA(document.getElementById("code").value);
