@@ -44,6 +44,7 @@
       document.getElementById("code").value=code;
       if(typeof transpile!=="undefined")document.getElementById("js-code").value=transpile(code);
 	  document.getElementById("input").value=input;
+	alert(document.getElementsByTagName);
       for(var a of ["p","h1","h2","h3"])
 	for(var item of document.getElementsByTagName(a))
 	  alert(item.innerHTML),
