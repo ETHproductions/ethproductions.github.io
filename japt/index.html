@@ -447,7 +447,7 @@
 </div>
 </div>
 
-<div id="GUI">
+<div id="GUI" onload="splitAddress()">
 <h1>&nbsp;&nbsp;Japt Interpreter</h1>
   <div id="left-column" style="float:left">
   <p>
@@ -489,7 +489,7 @@
   <input id="text-file" type="file" onsubmit="document.getElementById('code').value=this.value" />
   <input id="submit" type="button" value="Submit" onclick="var fr=new FileReader();fr.onload=function(){document.getElementById('code').value=fr.result};fr.readAsBinaryString(document.getElementById('text-file').files[0])"></button>
   <br>
-  <span id="stderr" style="color:red" onload="splitAddress()"></span>
+  <span id="stderr" style="color:red"></span>
 </p>
 </div>
 </body>
