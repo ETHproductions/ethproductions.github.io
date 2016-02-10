@@ -68,6 +68,8 @@
 	var text=document.getElementById("toggle-"+tab);
 	if(text.innerHTML=="▼")text.innerHTML="▲";else text.innerHTML="▼";
   }
+  
+  var int=setInterval(function(){if(document.getElementById(stderr))splitAddress,clearInterval(int)})
 </script>
 </head>
 <body>
@@ -447,7 +449,7 @@
 </div>
 </div>
 
-<div id="GUI" onload="splitAddress()">
+<div id="GUI">
 <h1>&nbsp;&nbsp;Japt Interpreter</h1>
   <div id="left-column" style="float:left">
   <p>
