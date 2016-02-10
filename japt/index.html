@@ -70,7 +70,7 @@
   }
 </script>
 </head>
-<body onload="splitAddress()">
+<body>
 <div id="docs">
 <h1>Japt Docs</h1>
 <p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>.
@@ -489,7 +489,7 @@
   <input id="text-file" type="file" onsubmit="document.getElementById('code').value=this.value" />
   <input id="submit" type="button" value="Submit" onclick="var fr=new FileReader();fr.onload=function(){document.getElementById('code').value=fr.result};fr.readAsBinaryString(document.getElementById('text-file').files[0])"></button>
   <br>
-  <span id="stderr" style="color:red"></span>
+  <span id="stderr" style="color:red" onload="splitAddress()"></span>
 </p>
 </div>
 </body>
