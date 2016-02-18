@@ -42,7 +42,7 @@
     document.getElementsByTagName('head')[0].appendChild(script);
     setTimeout(function(){
       document.getElementById("code").value=code;
-      if(typeof Japt.transpile!=="undefined")document.getElementById("js-code").value=Japt.transpile(code);
+      if(typeof Japt!=="undefined")document.getElementById("js-code").value=Japt.transpile(code);
 	  document.getElementById("input").value=input;
 	  Japt.stdout = document.getElementById("output");
 	  Japt.stderr = document.getElementById("stderr");
