@@ -456,7 +456,7 @@
   <p>
   &nbsp;&nbsp;Code:
   <br>
-  <textarea id="code" title="code" rows="8" placeholder="Enter your code here..." onkeypress="setTimeout(function(){document.getElementById('js-code').value=Japt.transpile(document.getElementById('code').value)},10)"></textarea>
+  <textarea id="code" title="code" rows="8" placeholder="Enter your code here..." onkeypress="setTimeout(function(){document.getElementById('js-code').value=(window.Japt||window).transpile(document.getElementById('code').value)},10)"></textarea>
   <br>
   &nbsp;&nbsp;Input:
   <br>
