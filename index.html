@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>ETHproductions</title>
-<link rel="stylesheet" type="text/css" href="style/style.css">
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
-<script>
-var currenttab = "none";
-var currentdiv = null;
-var opacity = 100;
-function opentab (tabname) {
-  if(currenttab === tabname) return;
-  var interval;
-  if (currentdiv) {
-    for(opacity=20,a=[];opacity--;) {
-		a.push(opacity);
-		setTimeout(function(){currentdiv.style.opacity = a.shift()/20;},20*opacity);
-	}
-	setTimeout(whenDone,400);
-  } else { whenDone(); }
-  function whenDone (x) {
-    if(currentdiv) {
-      clearInterval(interval);
-      currentdiv.style.display="none";
-	}
-	currenttab = tabname;
-	currentdiv = document.getElementById(currenttab);
-	currentdiv.style.display="block";
-	currentdiv.style.opacity=0;
-	for(opacity=0,a=[];opacity++<20;) {
-		a.push(opacity);
-		setTimeout(function(){currentdiv.style.opacity = a.shift()/20;},20*opacity);
-	}
-  }
-}
-</script>
-</head>
-<body style="text-align:center">
-<h1>ETHproductions</h1>
-<p>Here lies some meaningless text.</p>
-<a class="button1" onclick="opentab('japt')">Japt</a><a class="button1" onclick="opentab('fonts')">Fonts</a>
+	<head>
+		<title>ETHproductions</title>
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script>
+			var currenttab = "";
+			function opentab (tabname) {
+				if (currenttab === tabname) return;
+				if (currenttab) {
+					$(currenttab).fadeOut();
+					setTimeout(function(){
+						$(currenttab = tabname).fadeIn(1000);
+					}, 400);
+				} else {
+					$(currenttab = tabname).fadeIn(1000);
+				}
+			}
+		</script>
+	</head>
+	<body style="text-align:center">
+		<h1>ETHproductions</h1>
+		<p>A typographer, game designer and programmer.</p>
+		<h2 style="padding-top:0px">My works</h2>
+		<a class="button1" onclick="opentab('#fonts');">Fonts</a>
+		<a class="button1" onclick="opentab('#games');">Games</a>
+		<a class="button1" onclick="opentab('#japt');">Japt</a>
 
-<div id="japt">
-<h2>Japt</h2>
-<p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>. An interpreter is <a href="http://ethproductions.github.io/japt">here</a>.</p>
-</div>
+		<div id="japt" class="hide">
+			<h2>Japt</h2>
+			<p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>, designed for <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a>.<br>
+			<a href="http://github.com/ETHproductions/japt">GitHub</a> | <a href="/japt">Interpreter + Docs</a></p>
+		</div>
 
-<div id="fonts">
-<h2>Fonts</h2>
-<p>Ah, fonts. My glorious collection of creations. There will be a list here.</p>
-</div>
+		<div id="fonts" class="hide">
+			<h2>Fonts</h2>
+			<p>Coming soon to a webpage near you. In the meantime, <a href="http://fontstruct.com/fontstructors/677683/ethproductions">view my fonts on FontStruct</a>.</p>
+		</div>
 
-</body>
+		<div id="games" class="hide">
+			<h2>Games</h2>
+			<p>These are spread out across the web; I'll gather them here soon.</p>
+		</div>
+
+	</body>
 </html>
