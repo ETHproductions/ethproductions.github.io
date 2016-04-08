@@ -8,20 +8,12 @@
 	display: none;
 }
 
-.code-table {
-	border-collapse: collapse;
-	margin-left: 50px;
-	table-layout: fixed;
-	width: 250px;
-}
-
-.code-table tr td {
-	border: 1px solid #CCCCCC;
-	padding-left: 2px;
-	padding-right: 2px;
-	color: black;
-	font-family: Inconsolata, Consolas, monospace;
-	border-radius: 4px;
+hr {
+	width: 550px;
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .button1 {
@@ -38,6 +30,26 @@
 	cursor: pointer;
 }
 
+
+
+/* Japt interpreter stuff */
+
+.code-table {
+	border-collapse: collapse;
+	margin-left: 50px;
+	table-layout: fixed;
+	width: 250px;
+}
+
+.code-table tr td {
+	border: 1px solid #CCCCCC;
+	padding-left: 2px;
+	padding-right: 2px;
+	color: black;
+	font-family: Inconsolata, Consolas, monospace;
+	border-radius: 4px;
+}
+
 textarea {
 	overflow: auto;
 	width: 100%;
@@ -51,6 +63,7 @@ textarea {
 #GUI {
 	width: 50%;
 }
+
 #GUI * {
 	text-align: left;
 }
@@ -75,10 +88,6 @@ textarea {
 
 #docs, #docs * {
 	background-color: #EEE;
-}
-
-h2 {
-	padding-top: 8px;
 }
 
 .code {
