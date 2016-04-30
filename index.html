@@ -2,49 +2,64 @@
 <html>
 	<head>
 		<title>ETHproductions</title>
-		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<!--<link rel="stylesheet" type="text/css" href="style/style.css">-->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		<script>
-			var currenttab = "";
-			function opentab (tabname) {
-				if (currenttab === tabname) return;
-				if (currenttab) {
-					$(currenttab).fadeOut();
-					setTimeout(function(){
-						$(currenttab = tabname).fadeIn(1000);
-					}, 400);
-				} else {
-					$(currenttab = tabname).fadeIn(1000);
-				}
-			}
-		</script>
 	</head>
 	<body style="text-align:center">
 		<h1>ETHproductions</h1>
 		<p>Typographer | Game designer | Programmer</p>
 		<h2 style="padding-top:0px">My works</h2>
-		<a class="button1" onclick="opentab('#fonts');">Fonts</a>
-		<a class="button1" onclick="opentab('#games');">Games</a>
-		<a class="button1" onclick="opentab('#japt');">Japt</a>
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default" onclick="opentab('#fonts');">Fonts</button>
+			<button type="button" class="btn btn-default" onclick="opentab('#games');">Games</button>
+			<button type="button" class="btn btn-default" onclick="opentab('#japt');">Japt</button>
+		</div>
 		<br><br>
 		<hr>
-		<div id="japt" class="hide">
+		<div id="japt" style="display:none;">
 			<h2>Japt</h2>
 			<p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>, designed for <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a>.<br>
 			<a href="http://github.com/ETHproductions/japt">GitHub</a> | <a href="/japt">Interpreter + Docs</a></p>
 		</div>
 
-		<div id="fonts" class="hide">
+		<div id="fonts" style="display:none;">
 			<h2>Fonts</h2>
 			<p>Coming soon to a webpage near you. In the meantime, <a href="http://fontstruct.com/fontstructors/677683/ethproductions">view my fonts on FontStruct</a>.</p>
 		</div>
 
-		<div id="games" class="hide">
+		<div id="games" style="display:none;">
 			<h2>Games</h2>
 			<p>These are spread out across the web; I'll gather them here soon.</p>
 		</div>
 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"><\/script>')</script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script>
+			var currenttab = "",
+				nexttab = "",
+				fading = false,
+				fI = 500,
+				fO = 400;
+			function opentab (tabname) {
+				if (currenttab === tabname) return;
+				if (fading) return void(nexttab = tabname);
+				fading = true;
+				if (currenttab) {
+					$(currenttab).fadeOut(fO);
+					setTimeout(function(){ $(currenttab = tabname).fadeIn(fI); }, fO);
+					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fO + fI);
+				} else {
+					$(currenttab = tabname).fadeIn(fI);
+					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fI);
+				}
+			}
+		</script>
 	</body>
 </html>
