@@ -51,14 +51,14 @@
 				if (currenttab === tabname) return;
 				if (fading) return void(nexttab = tabname);
 				fading = true;
-				if (currenttab) {
-					$(currenttab).fadeOut(fO);
-					setTimeout(function(){ $(currenttab = tabname).fadeIn(fI); }, fO);
-					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fO + fI);
-				} else {
-					$(currenttab = tabname).fadeIn(fI);
-					setTimeout(function(){ fading = false; if (nexttab) opentab(nexttab), nexttab = ""; }, fI);
+				function open () {
+					$(currenttab = tabname).fadeIn(fI, function(){
+						fading = false;
+						if (nexttab) opentab(nexttab), nexttab = "";
+					});
 				}
+				if (currenttab) $(currenttab).fadeOut(fO, open);
+				else open();
 			}
 		</script>
 	</body>
