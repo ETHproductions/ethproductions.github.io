@@ -25,7 +25,7 @@
 
 		<div id="fonts" style="display:none;">
 			<h2>Fonts</h2>
-			<p>Coming soon to a webpage near you. In the meantime, <a href="http://fontstruct.com/fontstructors/677683/ethproductions">view my fonts on FontStruct</a>.</p>
+			<p><a href="/fonts">View font gallery</a> | <a href="http://fontstruct.com/fontstructors/677683/ethproductions">View all fonts on FontStruct</a></p>
 		</div>
 
 		<div id="games" style="display:none;">
@@ -44,20 +44,18 @@
 		<script>
 			var currenttab = "",
 				nexttab = "",
-				fading = false,
-				fI = 500,
-				fO = 400;
+				fading = false;
 			function opentab (tabname) {
 				if (currenttab === tabname) return;
 				if (fading) return void(nexttab = tabname);
 				fading = true;
 				function open () {
-					$(currenttab = tabname).fadeIn(fI, function(){
+					$(currenttab = tabname).fadeIn(500, function(){
 						fading = false;
 						if (nexttab) opentab(nexttab), nexttab = "";
 					});
 				}
-				if (currenttab) $(currenttab).fadeOut(fO, open);
+				if (currenttab) $(currenttab).fadeOut(400, open);
 				else open();
 			}
 		</script>
