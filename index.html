@@ -17,6 +17,12 @@
 		</div>
 		<br><br>
 		<hr>
+		<div id="default" style="display:none;">
+			<h3>Welcome to my website!</h3>
+			<p>This site is a work in progress.<br>
+			Click on a tab to learn more about what I do.</p>
+		</div>
+
 		<div id="japt" style="display:none;">
 			<h2>Japt</h2>
 			<p><strong>Japt</strong> is a shortened version of <strong>Ja</strong>vaScri<strong>pt</strong>, designed for <a href="https://en.wikipedia.org/wiki/Code_golf">code golf</a>.<br>
@@ -25,7 +31,8 @@
 
 		<div id="fonts" style="display:none;">
 			<h2>Fonts</h2>
-			<p><a href="/fonts">View font gallery</a> | <a href="http://fontstruct.com/fontstructors/677683/ethproductions">View all fonts on FontStruct</a></p>
+			<p>I enjoy experimenting with type design. <a href="http://fontstruct.com">FontStruct</a> is the main tool I use to create fonts.<br>
+			<a href="/fonts">View font gallery</a> | <a href="http://fontstruct.com/fontstructors/677683/ethproductions">View all fonts on FontStruct</a></p>
 		</div>
 
 		<div id="games" style="display:none;">
@@ -58,6 +65,7 @@
 				if (currenttab) $(currenttab).fadeOut(400, open);
 				else open();
 			}
+			opentab("default");
 		</script>
 	</body>
 </html>
