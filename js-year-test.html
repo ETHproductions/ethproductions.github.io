@@ -1,0 +1,72 @@
+<script onbeforeunload="123">
+	// This uses document.write because alert does nothing in Pheonix (Firefox) 0.1.
+	document.write((function () {
+		function assert (code) {
+			try {
+				eval(code);
+				return true;
+			} catch (e) {
+				return false;
+			}
+		}
+		
+		// Firefox 44 supports octal and binary literals in Number(); Firefox 35 does not.
+		if (Number("0o1") === 1)
+			return 2016;
+		
+		// Firefox 35 supports template strings; Firefox 27 does not.
+		if (assert("`abc`"))
+			return 2015;
+		
+		// Firefox 27 supports argument spreading; Firefox 18 does not.
+		if (assert("Math.max(...[1, 2, 3])"))
+			return 2014;
+			
+		// Firefox 18 supports default arguments; Firefox 10 does not.
+		if (assert("function q(a = 1) { }"))
+			return 2013;
+		
+		// Firefox 10 has basic WeakMap support; Firefox 4 does not.
+		if (assert("WeakMap.a"))
+			return 2012;
+		
+		// Firefox 4 has basic typed array support; Firefox 3.6 does not.
+		if (assert("Int8Array.a"))
+			return 2011;
+		
+		// Firefox 3.6 added the async attribute to script elements.
+		if (assert("document.getElementsByTagName('script')[0].async.a"))
+			return 2010;
+		
+		// Firefox 3.5 added the String.prototype.trim() method.
+		if (assert("'abc'.trim()"))
+			return 2009;
+		
+		// Firefox 3.0 added partial support for object destructuring.
+		if (assert("var {c} = {c: 7}"))
+			return 2008;
+		
+		// Firefox 3.0 beta 1 added the Array.prototype.reduce() and Array.prototype.reduceRight() methods.
+		if (assert("[].reduce.a"))
+			return 2007;
+		
+		// Firefox 2.0 added support for restricted words as properties.
+		if (assert("({if:1}).if"))
+			return 2006;
+		
+		// Firefox 1.5 added the Array.prototype.indexOf() methods, along with a couple other Array methods.
+		if (assert("[1].indexOf(1)"))
+			return 2005;
+		
+		// Practically the only JS difference between v0.6 and v1.0 is the addition of the onbeforeunload event.
+		if (assert("document.getElementsByTagName('script')[0].onbeforeunload.a"))
+			return 2004;
+		
+		// The Object.prototype.eval() method was removed in Firebird 0.6.
+		if (!assert("'abc'.eval()"))
+			return 2003;
+		
+		// We're all the way back to the good old Pheonix 0.1 browser...
+		return 2002;
+	})());
+</script>
