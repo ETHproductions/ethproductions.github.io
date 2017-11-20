@@ -13,10 +13,24 @@
 				padding-bottom: 4px;
 			}
 			
-			div[class*='bg-'] {
+			div.bg {
 				box-shadow:
-					inset  0  8px 8px -8px #222, 
-					inset  0 -8px 8px -8px #222;
+					inset  0  12px 12px -8px #000, 
+					inset  0 -12px 12px -8px #000;
+				
+				height: 150px;
+				
+				background: repeating-linear-gradient(
+					45deg,
+					#000,
+					#000 10px,
+					#fff 10px,
+					#fff 20px
+				);
+			}
+			
+			div[class*='bg-'] {
+				height: 100%;
 			}
 			
 			div[class*='borders-'] {
@@ -24,7 +38,7 @@
 			}
 			
 			@media only screen and (max-width: 991px) {
-				div[class*='bg-'] {
+				div.bg {
 					height: 150px;
 				}
 			}
@@ -34,7 +48,7 @@
 					padding: 0;
 				}
 				
-				div[class*='bg-'] {
+				div.bg {
 					height: 100px;
 				}
 			}
@@ -59,26 +73,39 @@
 			
 			@media only screen and (min-width: 992px) {
 				div[class*='borders-'] {
-					padding: 0px 16%;
-				}
-				
-				div[class*='bg-'] {
-					height: 200px;
+					padding: 0px 13%;
 				}
 			}
 
-			.bg-gray {
-				background: repeating-linear-gradient(
-					45deg,
-					#444,
-					#444 10px,
-					#555 10px,
-					#555 20px
+			.bg-black-gray {
+				background: linear-gradient(
+					#000d,
+					#555d
 				);
 			}
 			
 			.borders-gray {
 				background-color: #444;
+			}
+
+			.bg-gray-blue {
+				background: linear-gradient(
+					#555d,
+					#348d,
+					#32cd
+				);
+			}
+			
+			.borders-blue {
+				background-color: #329;
+			}
+
+			.bg-blue-black {
+				background: linear-gradient(
+					#32cd,
+					#214d,
+					#000d
+				);
 			}
 			
 			.center {
@@ -124,27 +151,36 @@
 			</div>
 		</div>
 		
-		<div class="bg-gray" />
+		<div class="bg"><div class="bg-black-gray"/></div>
 		
 		<div class="borders-gray">
 			<div class="center">
-				<h2>What I do</h2>
-				<div class="col-xs-6 col-sm-4">
+				<h2>Programming</h2>
+				<p>more stuff soon</p>
+			</div>
+		</div>
+		
+		<div class="bg"><div class="bg-gray-blue"/></div>
+		
+		<div class="borders-blue">
+			<div class="center">
+				<h2>Other projects</h2>
+				<div class="col-xs-6 col-sm-4 col-web">
 					<img src="./img/web.png">
 					<p>Web development</p>
 				</div>
-				<div class="col-xs-6 col-sm-4">
+				<div class="col-xs-6 col-sm-4 col-games">
 					<img src="./img/games.png">
 					<p>Game creation</p>
 				</div>
-				<div class="col-xs-6 col-sm-4">
+				<div class="col-xs-6 col-sm-4 col-fonts">
 					<img src="./img/fonts.png">
 					<p>Type design</p>
 				</div>
 			</div>
 		</div>
 		
-		<div class="bg-gray" />
+		<div class="bg"><div class="bg-blue-black"/></div>
 
 		</div> <!-- end .container -->
 
