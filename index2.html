@@ -9,6 +9,21 @@
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="style/bootstrap.min.css" type="text/css">
 		<style>
+			img {
+				border-radius: 50%;
+				width: 80%;
+				max-width: 150px;
+				padding: 12px 0px;
+			}
+			
+			.container-fluid {
+				padding: 0px;
+			}
+			
+			body {
+				text-align: center;
+			}
+			
 			.header {
 				padding-bottom: 4px;
 			}
@@ -76,34 +91,65 @@
 					padding: 0px 13%;
 				}
 			}
-
-			.bg-black-gray {
+			
+			.bg-black-red {
 				background: linear-gradient(
-					#000d,
-					#555d
+					#222d,
+					#b12d
 				);
 			}
 			
-			.borders-gray {
-				background-color: #444;
+			.borders-red {
+				background-color: #b12;
 			}
 
-			.bg-gray-blue {
+			.bg-red-orange {
 				background: linear-gradient(
-					#555d,
-					#348d,
-					#32cd
+					#b12d,
+					#c71d
+				);
+			}
+			
+			.borders-orange {
+				background-color: #c71;
+			}
+
+			.bg-orange-yellow {
+				background: linear-gradient(
+					#c71d,
+					#cc1d
+				);
+			}
+			
+			.borders-yellow {
+				background-color: #cc1;
+			}
+
+			.bg-yellow-green {
+				background: linear-gradient(
+					#cc1d,
+					#391d
+				);
+			}
+			
+			.borders-green {
+				background-color: #391;
+			}
+
+			.bg-green-blue {
+				background: linear-gradient(
+					#391d,
+					#129d
 				);
 			}
 			
 			.borders-blue {
-				background-color: #329;
+				background-color: #129;
 			}
 
 			.bg-blue-black {
 				background: linear-gradient(
-					#32cd,
-					#214d,
+					#129d,
 					#000d
 				);
 			}
@@ -118,42 +164,76 @@
 				overflow: auto;
 			}
 			
-			img {
-				border-radius: 50%;
-				width: 80%;
-				max-width: 150px;
-				padding: 12px 0px;
+			.projects {
+				overflow: hidden;
+				padding-top: 10px;
+				padding-bottom: 10px;
 			}
 			
-			.container-fluid {
-				padding: 0px;
+			.project {
+				display: table;
+				table-layout: auto;
+				margin-top: -10px;
+				margin-bottom: -10px;
 			}
 			
-			body {
-				text-align: center;
+			.left *, .right * {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			
+			.left p {
+				width: 70%;
+				text-align: left;
+			}
+			
+			.left img {
+				float: left;
+			}
+			
+			.right p {
+				width: 70%;
+				text-align: right;
+			}
+			
+			.right img {
+				float: right;
 			}
 		</style>
 	</head>
 	<body><div class="container-fluid">
-		<div class="row">
+		<div>
 			<div class="header">
 				<h1>ETHproductions</h1>
 				<p>Programmer | Game creator | Type designer</p>
 			</div>
 		</div>
 		
-		<div class="bg"><div class="bg-black-gray"/></div>
+		<div class="bg"><div class="bg-black-red"/></div>
 		
-		<div class="borders-gray">
+		<div class="borders-red">
 			<div class="center">
 				<h2>Programming</h2>
-				<p>more stuff soon</p>
+				<div class="projects">
+					<div class="col-xs-12 project left">
+						<img src="./img/web.png">
+						<p class="description">This is my first project.</p>
+					</div>
+					<div class="col-xs-12 project right">
+						<p class="description">Hello, world! </p>
+						<img src="./img/games.png">
+					</div>
+					<div class="col-xs-12 project left">
+						<img src="./img/fonts.png">
+						<p class="description">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		
-		<div class="bg"><div class="bg-gray-blue"/></div>
+		<div class="bg"><div class="bg-red-orange"/></div>
 		
-		<div class="borders-blue">
+		<div class="borders-orange">
 			<div class="center">
 				<h2>Other projects</h2>
 				<div class="col-xs-6 col-sm-4 col-web">
@@ -164,10 +244,75 @@
 					<img src="./img/games.png">
 					<p>Game creation</p>
 				</div>
-				<div class="col-xs-3"/>
 				<div class="col-xs-6 col-sm-4 col-fonts">
 					<img src="./img/fonts.png">
 					<p>Type design</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bg"><div class="bg-orange-yellow"/></div>
+		
+		<div class="borders-yellow">
+			<div class="center">
+				<h2>Web development</h2>
+				<div class="projects">
+					<div class="col-xs-12 project left">
+						<img src="./img/web.png">
+						<p class="description">This is my first project.</p>
+					</div>
+					<div class="col-xs-12 project right">
+						<p class="description">Hello, world! </p>
+						<img src="./img/games.png">
+					</div>
+					<div class="col-xs-12 project left">
+						<img src="./img/fonts.png">
+						<p class="description">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bg"><div class="bg-yellow-green"/></div>
+		
+		<div class="borders-green">
+			<div class="center">
+				<h2>Game creation</h2>
+				<div class="projects">
+					<div class="col-xs-12 project left">
+						<img src="./img/web.png">
+						<p class="description">This is my first project.</p>
+					</div>
+					<div class="col-xs-12 project right">
+						<p class="description">Hello, world! </p>
+						<img src="./img/games.png">
+					</div>
+					<div class="col-xs-12 project left">
+						<img src="./img/fonts.png">
+						<p class="description">Lorem ipsum dolor sit amet.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="bg"><div class="bg-green-blue"/></div>
+		
+		<div class="borders-blue">
+			<div class="center">
+				<h2>Type design</h2>
+				<div class="projects">
+					<div class="col-xs-12 project left">
+						<img src="./img/web.png">
+						<p class="description">This is my first project.</p>
+					</div>
+					<div class="col-xs-12 project right">
+						<p class="description">Hello, world! </p>
+						<img src="./img/games.png">
+					</div>
+					<div class="col-xs-12 project left">
+						<img src="./img/fonts.png">
+						<p class="description">Lorem ipsum dolor sit amet.</p>
+					</div>
 				</div>
 			</div>
 		</div>
