@@ -182,10 +182,18 @@
 			}
 			
 			.project {
-				margin-top: -10px;
-				margin-bottom: -10px;
-				width: 100%;
+                display: flex;
+                flex-direction: row;
 			}
+
+            .project .thumb {
+                padding: 0 1em;
+                box-sizing: border-box;
+            }
+
+            .project .summary {
+                flex: 1;
+            }
 			
 			.left *, .right * {
 				
